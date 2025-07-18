@@ -7,21 +7,22 @@
  */
 package org.dspace.app.rest.utils;
 
+import static jakarta.mail.internet.MimeUtility.encodeText;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static javax.mail.internet.MimeUtility.encodeText;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.tomcat.util.http.FastHttpDateFormat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 
 /**
@@ -32,13 +33,14 @@ import org.springframework.http.HttpHeaders;
  */
 public class HttpHeadersInitializer {
 
-    protected final Logger log = LoggerFactory.getLogger(this.getClass());
+    protected final Logger log = LogManager.getLogger();
 
     private static final String MULTIPART_BOUNDARY = "MULTIPART_BYTERANGES";
     private static final String CONTENT_TYPE_MULTITYPE_WITH_BOUNDARY = "multipart/byteranges; boundary=" +
         MULTIPART_BOUNDARY;
     public static final String CONTENT_DISPOSITION_INLINE = "inline";
     public static final String CONTENT_DISPOSITION_ATTACHMENT = "attachment";
+    public static final String CONTENT_DISPOSITION = "Content-Disposition";
     private static final String IF_NONE_MATCH = "If-None-Match";
     private static final String IF_MODIFIED_SINCE = "If-Modified-Since";
     private static final String ETAG = "ETag";
@@ -52,7 +54,6 @@ public class HttpHeadersInitializer {
     private static final String APPLICATION_OCTET_STREAM = "application/octet-stream";
     private static final String IMAGE = "image";
     private static final String ACCEPT = "Accept";
-    private static final String CONTENT_DISPOSITION = "Content-Disposition";
     private static final String CONTENT_DISPOSITION_FORMAT = "%s;filename=\"%s\"";
     private static final String CACHE_CONTROL = "Cache-Control";
 
@@ -149,7 +150,7 @@ public class HttpHeadersInitializer {
         }
         httpHeaders.put(LAST_MODIFIED, Collections.singletonList(FastHttpDateFormat.formatDate(lastModified)));
         httpHeaders.put(EXPIRES, Collections.singletonList(FastHttpDateFormat.formatDate(
-            System.currentTimeMillis() + DEFAULT_EXPIRE_TIME)));
+            Instant.now().toEpochMilli() + DEFAULT_EXPIRE_TIME)));
 
         //No-cache so that we can log every download
         httpHeaders.put(CACHE_CONTROL, Collections.singletonList(CACHE_CONTROL_SETTING));
