@@ -93,4 +93,13 @@
     <scope_note>Telephone number of a PDAC</scope_note>
   </dc-type>
   <!-- END TAMU Customization - additional local field Contact Phone-->
+
+  <!-- TAMU Customization - Hidden local draft abstract metadata field-->
+  <dc-type>
+    <schema>local</schema>
+    <element>draftAbstract</element>
+    <!--unqualified-->
+    <!--no scope note-->
+  </dc-type>
+  <!-- END TAMU Customization - Hidden local draft abstract field-->
 </dspace-dc-types>
