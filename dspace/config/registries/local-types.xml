@@ -99,16 +99,7 @@
     <schema>local</schema>
     <element>draftAbstract</element>
     <!--unqualified-->
-    <scope_note>Test</scope_note>
+    <scope_note>Test localDraftAbstract</scope_note>
   </dc-type>
   <!-- END TAMU Customization - Hidden local draft abstract field-->
-
-  <!-- TAMU Customization - testDeployment -->
-  <dc-type>
-    <schema>local</schema>
-    <element>testDeployment</element>
-    <!-- unqualified -->
-    <scope_note>testDeployment</scope_note>
-  </dc-type>
-  <!-- END TAMU Customization - testDeployment -->
 </dspace-dc-types>
