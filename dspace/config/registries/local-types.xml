@@ -102,4 +102,13 @@
     <scope_note>Test</scope_note>
   </dc-type>
   <!-- END TAMU Customization - Hidden local draft abstract field-->
+
+  <!-- TAMU Customization - Testing metadata registry creation -->
+  <dc-type>
+    <schema>local</schema>
+    <element>testMetadataField</element>
+    <!-- unqualified -->
+    <scope_note>Testing metadata registry creation</scope_note>
+  </dc-type>
+  <!-- END TAMU Customization - Testing metadata registry creation -->
 </dspace-dc-types>
