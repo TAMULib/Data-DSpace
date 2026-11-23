@@ -99,7 +99,7 @@
     <schema>local</schema>
     <element>draftAbstract</element>
     <!--unqualified-->
-    <!--no scope note-->
+    <scope_note>Test</scope_note>
   </dc-type>
   <!-- END TAMU Customization - Hidden local draft abstract field-->
 </dspace-dc-types>
